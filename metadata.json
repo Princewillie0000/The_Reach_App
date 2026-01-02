@@ -1,0 +1,9 @@
+
+{
+  "name": "The Reach App",
+  "description": "A comprehensive real estate and creator monetization platform connecting developers, promoters, and buyers with escrow payments and inspection tracking.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
