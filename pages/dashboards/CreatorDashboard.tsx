@@ -1,12 +1,14 @@
 
+'use client';
+
 import React from 'react';
 import { User } from '../../types';
 import StatCard from '../../components/dashboard/StatCard';
 import { Bell, Menu, Share2, Award, ArrowRight } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 
 const CreatorDashboard: React.FC<{ user: User }> = ({ user }) => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   return (
     <div className="pb-24 bg-reach-light min-h-screen">
@@ -24,7 +26,7 @@ const CreatorDashboard: React.FC<{ user: User }> = ({ user }) => {
           </div>
         </div>
         <div className="flex gap-2">
-          <button onClick={() => navigate('/notifications')} className="bg-gray-50 p-2.5 rounded-full text-gray-500">
+          <button onClick={() => router.push('/notifications')} className="bg-gray-50 p-2.5 rounded-full text-gray-500">
             <Bell size={20} />
           </button>
           <button className="bg-gray-50 p-2.5 rounded-full text-gray-500">
@@ -39,7 +41,7 @@ const CreatorDashboard: React.FC<{ user: User }> = ({ user }) => {
               <p className="text-blue-200 text-xs font-bold tracking-widest uppercase mb-1">Total Earned</p>
               <h2 className="text-3xl font-bold mb-6">₦10,500,000</h2>
               <button 
-                onClick={() => navigate('/wallet')}
+                onClick={() => router.push('/wallet')}
                 className="bg-white/10 backdrop-blur-md px-5 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 hover:bg-white/20"
               >
                 Go to Wallet <ArrowRight size={16} />

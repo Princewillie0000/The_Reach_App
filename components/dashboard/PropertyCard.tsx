@@ -1,15 +1,17 @@
 
+'use client';
+
 import React from 'react';
 import { Property, PropertyStatus } from '../../types';
 import { Eye, Users, Star, MoreHorizontal, MapPin } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 
 interface Props {
   property: Property;
 }
 
 const PropertyCard: React.FC<Props> = ({ property }) => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const getStatusColor = (status: PropertyStatus) => {
     switch (status) {
@@ -22,7 +24,7 @@ const PropertyCard: React.FC<Props> = ({ property }) => {
 
   return (
     <div 
-      onClick={() => navigate(`/property/${property.id}`)}
+      onClick={() => router.push(`/property/${property.id}`)}
       className="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm transition-transform active:scale-[0.98]"
     >
       <div className="relative h-56">

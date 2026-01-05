@@ -1,12 +1,16 @@
 
+'use client';
+
 import React, { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'next/navigation';
 // Fixed: Added missing Eye and Users icon imports from lucide-react
 import { ChevronLeft, Bell, MoreHorizontal, MapPin, Bed, Bath, Move, Star, Info, MessageSquare, Eye, Users } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 const PropertyDetail: React.FC = () => {
-  const { id } = useParams();
-  const navigate = useNavigate();
+  const params = useParams();
+  const id = params?.id as string;
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState('Overview');
 
   // Simulated data
@@ -27,7 +31,7 @@ const PropertyDetail: React.FC = () => {
       <div className="relative h-80">
         <img src={property.imageUrl} alt="property" className="w-full h-full object-cover" />
         <div className="absolute top-6 left-6 right-6 flex justify-between items-center">
-           <button onClick={() => navigate(-1)} className="p-3 bg-white/20 backdrop-blur-xl border border-white/30 rounded-full text-white">
+           <button onClick={() => router.back()} className="p-3 bg-white/20 backdrop-blur-xl border border-white/30 rounded-full text-white">
               <ChevronLeft size={24} />
            </button>
            <div className="flex gap-3">

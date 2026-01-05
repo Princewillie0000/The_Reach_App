@@ -1,11 +1,10 @@
 
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { User, UserRole } from '../../types';
+'use client';
 
-interface Props {
-  onComplete: (user: User) => void;
-}
+import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { User, UserRole } from '../../types';
+import { useUser } from '../../contexts/UserContext';
 
 enum VerifyStep {
   PHONE,
@@ -15,11 +14,12 @@ enum VerifyStep {
   SUCCESS
 }
 
-const VerificationFlow: React.FC<Props> = ({ onComplete }) => {
+const VerificationFlow: React.FC = () => {
   const [step, setStep] = useState<VerifyStep>(VerifyStep.PHONE);
   const [phone, setPhone] = useState('');
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
-  const navigate = useNavigate();
+  const router = useRouter();
+  const { setUser } = useUser();
   const role = (localStorage.getItem('temp_role') as UserRole) || UserRole.BUYER;
 
   const handleNext = () => {
@@ -40,8 +40,8 @@ const VerificationFlow: React.FC<Props> = ({ onComplete }) => {
       companyName: role === UserRole.DEVELOPER ? "LLC Constructions" : undefined,
       avatarUrl: "https://picsum.photos/200?random=5"
     };
-    onComplete(mockUser);
-    navigate('/dashboard');
+    setUser(mockUser);
+    router.push('/dashboard');
   };
 
   const renderPhone = () => (
@@ -184,7 +184,7 @@ const VerificationFlow: React.FC<Props> = ({ onComplete }) => {
   return (
     <div className="h-screen bg-reach-light">
       <div className="p-6">
-        <button onClick={() => navigate(-1)} className="bg-white p-2 rounded-full shadow-sm">
+        <button onClick={() => router.back()} className="bg-white p-2 rounded-full shadow-sm">
            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
         </button>
       </div>

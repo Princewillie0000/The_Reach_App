@@ -1,6 +1,8 @@
 
+'use client';
+
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 
 const slides = [
   {
@@ -22,7 +24,7 @@ const slides = [
 
 const Landing: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const navigate = useNavigate();
+  const router = useRouter();
 
   return (
     <div className="flex flex-col h-screen bg-reach-light overflow-hidden">
@@ -58,13 +60,13 @@ const Landing: React.FC = () => {
 
         <div className="w-full space-y-4">
           <button 
-            onClick={() => navigate('/role-selection')}
+            onClick={() => router.push('/role-selection')}
             className="w-full bg-reach-navy text-white font-semibold py-4 rounded-2xl hover:bg-opacity-90 transition-all active:scale-95 shadow-lg"
           >
             Create an Account
           </button>
           <button 
-            onClick={() => navigate('/role-selection')}
+            onClick={() => router.push('/role-selection')}
             className="w-full bg-white text-reach-navy border-2 border-reach-navy font-semibold py-4 rounded-2xl hover:bg-gray-50 transition-all active:scale-95"
           >
             Log In
@@ -72,7 +74,7 @@ const Landing: React.FC = () => {
         </div>
         
         <p className="mt-6 text-sm text-gray-400">
-          Already have an account? <span className="text-reach-navy font-bold cursor-pointer" onClick={() => navigate('/role-selection')}>Sign in</span>
+          Already have an account? <span className="text-reach-navy font-bold cursor-pointer" onClick={() => router.push('/role-selection')}>Sign in</span>
         </p>
       </div>
     </div>

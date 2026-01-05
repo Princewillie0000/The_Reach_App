@@ -1,9 +1,11 @@
 
+'use client';
+
 import React, { useState } from 'react';
 import { User, Transaction } from '../types';
 // Fixed: Added missing Wallet import from lucide-react
 import { ChevronLeft, Bell, Menu, Eye, EyeOff, ArrowUpRight, Plus, Wallet } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 
 const MOCK_TRANSACTIONS: Transaction[] = [
   { id: '1', type: 'deposit', amount: 2000, date: 'Jun 27th, 20:53:39', status: 'completed', description: 'Madebyrobb' },
@@ -13,13 +15,13 @@ const MOCK_TRANSACTIONS: Transaction[] = [
 
 const WalletPage: React.FC<{ user: User }> = ({ user }) => {
   const [showBalance, setShowBalance] = useState(true);
-  const navigate = useNavigate();
+  const router = useRouter();
 
   return (
     <div className="pb-24 bg-reach-light min-h-screen">
        <header className="p-6 bg-white flex items-center justify-between sticky top-0 z-40 border-b border-gray-50">
         <div className="flex items-center gap-4">
-           <button onClick={() => navigate(-1)} className="p-2.5 rounded-full bg-gray-50">
+           <button onClick={() => router.back()} className="p-2.5 rounded-full bg-gray-50">
               <ChevronLeft size={20} />
            </button>
            <h1 className="text-lg font-bold">Wallet</h1>

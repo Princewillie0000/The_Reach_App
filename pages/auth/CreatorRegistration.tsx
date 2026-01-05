@@ -1,10 +1,9 @@
+'use client';
+
 import { User, UserRole } from '../../types';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-
-interface Props {
-  onComplete: (user: User) => void;
-}
+import { useRouter } from 'next/navigation';
+import { useUser } from '../../contexts/UserContext';
 
 enum VerifyStep {
   PHONE,
@@ -14,7 +13,7 @@ enum VerifyStep {
   SUCCESS
 }
 
-const CreatorRegistration: React.FC<Props> = ({ onComplete }) => {
+const CreatorRegistration: React.FC = () => {
   const [step, setStep] = useState<VerifyStep>(VerifyStep.PHONE);
   // Shared state for phone/OTP verification
   const [phone, setPhone] = useState('');
@@ -37,7 +36,8 @@ const CreatorRegistration: React.FC<Props> = ({ onComplete }) => {
   const [emailLink, setEmailLink] = useState('');
   const [tiktokLink, setTiktokLink] = useState('');
   
-  const navigate = useNavigate();
+  const router = useRouter();
+  const { setUser } = useUser();
   const role = UserRole.CREATOR;
 
   const isValidOtp = () => {
@@ -96,8 +96,8 @@ const CreatorRegistration: React.FC<Props> = ({ onComplete }) => {
       isVerified: true,
       avatarUrl: "https://picsum.photos/200?random=15"
     };
-    onComplete(mockUser);
-    navigate('/dashboard');
+    setUser(mockUser);
+    router.push('/dashboard');
   };
 
   // --- Creator-specific onboarding screens below. Avoid reusing Developer screens. ---
@@ -519,7 +519,7 @@ const CreatorRegistration: React.FC<Props> = ({ onComplete }) => {
     <div className="h-screen bg-reach-light">
       <div className="p-6">
         <button
-          onClick={() => navigate(-1)}
+          onClick={() => router.back()}
           className="bg-white p-2 rounded-full shadow-sm"
         >
           <svg

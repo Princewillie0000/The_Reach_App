@@ -1,10 +1,12 @@
 
+'use client';
+
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { ChevronLeft, Bell, Menu, CheckCircle2, Home, CreditCard } from 'lucide-react';
 
 const NotificationPage: React.FC = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const notifications = [
     {
@@ -42,7 +44,7 @@ const NotificationPage: React.FC = () => {
     <div className="pb-24 bg-reach-light min-h-screen">
       <header className="p-6 bg-white flex items-center justify-between sticky top-0 z-40">
         <div className="flex items-center gap-4">
-           <button onClick={() => navigate(-1)} className="p-2.5 rounded-full bg-gray-50">
+           <button onClick={() => router.back()} className="p-2.5 rounded-full bg-gray-50">
               <ChevronLeft size={20} />
            </button>
            <h1 className="text-xl font-bold">Notifications</h1>

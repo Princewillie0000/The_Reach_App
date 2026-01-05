@@ -1,10 +1,12 @@
 
+'use client';
+
 import React, { useState } from 'react';
 import { User, PropertyStatus, Property } from '../../types';
 import PropertyCard from '../../components/dashboard/PropertyCard';
 import StatCard from '../../components/dashboard/StatCard';
 import { Plus, Bell, Menu, Search, SlidersHorizontal } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 
 interface Props {
   user: User;
@@ -57,7 +59,7 @@ const MOCK_PROPERTIES: Property[] = [
 
 const DeveloperDashboard: React.FC<Props> = ({ user }) => {
   const [activeTab, setActiveTab] = useState('All');
-  const navigate = useNavigate();
+  const router = useRouter();
 
   return (
     <div className="pb-24 bg-reach-light min-h-screen">
@@ -77,7 +79,7 @@ const DeveloperDashboard: React.FC<Props> = ({ user }) => {
           </div>
         </div>
         <div className="flex gap-2">
-          <button onClick={() => navigate('/notifications')} className="bg-gray-50 p-2.5 rounded-full text-gray-500 hover:text-reach-navy">
+          <button onClick={() => router.push('/notifications')} className="bg-gray-50 p-2.5 rounded-full text-gray-500 hover:text-reach-navy">
             <Bell size={20} />
           </button>
           <button className="bg-gray-50 p-2.5 rounded-full text-gray-500">

@@ -1,12 +1,10 @@
 
+'use client';
 
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { User, UserRole } from '../../types';
-
-interface Props {
-  onComplete: (user: User) => void;
-}
+import { useUser } from '../../contexts/UserContext';
 
 enum VerifyStep {
   PHONE,
@@ -19,7 +17,7 @@ enum VerifyStep {
   SUCCESS
 }
 
-const DeveloperRegistration: React.FC<Props> = ({ onComplete }) => {
+const DeveloperRegistration: React.FC = () => {
   const [step, setStep] = useState<VerifyStep>(VerifyStep.PHONE);
   // Shared state for phone/OTP verification
   const [phone, setPhone] = useState('');
@@ -48,7 +46,8 @@ const DeveloperRegistration: React.FC<Props> = ({ onComplete }) => {
   const [billingCountry, setBillingCountry] = useState('Nigeria');
   const [billingAddress, setBillingAddress] = useState('');
   
-  const navigate = useNavigate();
+  const router = useRouter();
+  const { setUser } = useUser();
   const role = UserRole.DEVELOPER;
 
   const isValidOtp = () => {
@@ -99,8 +98,8 @@ const DeveloperRegistration: React.FC<Props> = ({ onComplete }) => {
       companyName: companyName,
       avatarUrl: "https://picsum.photos/200?random=5"
     };
-    onComplete(mockUser);
-    navigate('/dashboard');
+    setUser(mockUser);
+    router.push('/dashboard');
   };
 
   const renderPhone = () => (
@@ -635,7 +634,7 @@ const DeveloperRegistration: React.FC<Props> = ({ onComplete }) => {
   return (
     <div className="h-screen bg-reach-light">
       <div className="p-6">
-        <button onClick={() => navigate(-1)} className="bg-white p-2 rounded-full shadow-sm">
+        <button onClick={() => router.back()} className="bg-white p-2 rounded-full shadow-sm">
            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
         </button>
       </div>

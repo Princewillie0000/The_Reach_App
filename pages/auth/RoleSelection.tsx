@@ -1,12 +1,10 @@
 
+'use client';
+
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { UserRole } from '../../types';
 import { ChevronLeft } from 'lucide-react';
-
-interface Props {
-  onSelectRole: (role: UserRole) => void;
-}
 
 const roles = [
   { id: UserRole.DEVELOPER, title: "I am a developer/ Agency", description: "Listers and property managers" },
@@ -14,14 +12,14 @@ const roles = [
   { id: UserRole.BUYER, title: "I am a buyer", description: "Property seekers and investors" }
 ];
 
-const RoleSelection: React.FC<Props> = ({ onSelectRole }) => {
+const RoleSelection: React.FC = () => {
   const [selected, setSelected] = useState<UserRole | null>(null);
-  const navigate = useNavigate();
+  const router = useRouter();
 
   return (
     <div className="h-screen bg-reach-light flex flex-col">
       <div className="p-6">
-        <button onClick={() => navigate('/')} className="bg-white p-2 rounded-full shadow-sm">
+        <button onClick={() => router.push('/')} className="bg-white p-2 rounded-full shadow-sm">
            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
         </button>
       </div>
@@ -58,11 +56,11 @@ const RoleSelection: React.FC<Props> = ({ onSelectRole }) => {
             if (selected) {
               localStorage.setItem('temp_role', selected);
               if (selected === UserRole.DEVELOPER) {
-                navigate('/register/developer');
+                router.push('/register/developer');
               } else if (selected === UserRole.CREATOR) {
-                navigate('/register/creator');
+                router.push('/register/creator');
               } else if (selected === UserRole.BUYER) {
-                navigate('/register/buyer');
+                router.push('/register/buyer');
               }
             }
           }}
