@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation';
 import { useUser } from '../contexts/UserContext';
 import Landing from '../pages/Landing';
 
+export const dynamic = 'force-dynamic';
+
 export default function HomePage() {
   const router = useRouter();
   const { user, isLoading } = useUser();

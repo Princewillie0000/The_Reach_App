@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation';
 import { useUser } from '../../contexts/UserContext';
 import WalletPage from '../../pages/WalletPage';
 
+export const dynamic = 'force-dynamic';
+
 export default function WalletPageRoute() {
   const router = useRouter();
   const { user, isLoading } = useUser();

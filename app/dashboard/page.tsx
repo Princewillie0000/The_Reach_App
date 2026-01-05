@@ -8,6 +8,8 @@ import DeveloperDashboard from '../../pages/dashboards/DeveloperDashboard';
 import CreatorDashboard from '../../pages/dashboards/CreatorDashboard';
 import BuyerDashboard from '../../pages/dashboards/BuyerDashboard';
 
+export const dynamic = 'force-dynamic';
+
 export default function DashboardPage() {
   const router = useRouter();
   const { user, isLoading } = useUser();
