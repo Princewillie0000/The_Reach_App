@@ -1212,6 +1212,7 @@ const MOCK_PROPERTIES = [
         title: "4 Bedroom duplex Apartment",
         location: "Lekki Phase 1",
         price: 20000000,
+        description: "Modern duplex in the heart of Lekki.",
         status: __TURBOPACK__imported__module__$5b$project$5d2f$types$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["PropertyStatus"].VERIFIED,
         imageUrl: "https://picsum.photos/600/400?random=111",
         stats: {
@@ -1228,6 +1229,7 @@ const MOCK_PROPERTIES = [
         title: "3 Bedroom Flat",
         location: "Victoria Island",
         price: 35000000,
+        description: "Luxury flat in prime location.",
         status: __TURBOPACK__imported__module__$5b$project$5d2f$types$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["PropertyStatus"].VERIFIED,
         imageUrl: "https://picsum.photos/600/400?random=112",
         stats: {
