@@ -5,8 +5,8 @@ import PropertyCard from '../../components/dashboard/PropertyCard';
 import { Bell, Menu, Search, SlidersHorizontal, Map } from 'lucide-react';
 
 const MOCK_PROPERTIES = [
-  { id: '1', title: "4 Bedroom duplex Apartment", location: "Lekki Phase 1", price: 20000000, status: PropertyStatus.VERIFIED, imageUrl: "https://picsum.photos/600/400?random=111", stats: { views: 156, leads: 10 }, bedrooms: 4, bathrooms: 3, sqft: 1400, developerId: 'd1' },
-  { id: '2', title: "3 Bedroom Flat", location: "Victoria Island", price: 35000000, status: PropertyStatus.VERIFIED, imageUrl: "https://picsum.photos/600/400?random=112", stats: { views: 24, leads: 2 }, bedrooms: 3, bathrooms: 2, sqft: 1200, developerId: 'd1' }
+  { id: '1', title: "4 Bedroom duplex Apartment", location: "Lekki Phase 1", price: 20000000, description: "Modern duplex in the heart of Lekki.", status: PropertyStatus.VERIFIED, imageUrl: "https://picsum.photos/600/400?random=111", stats: { views: 156, leads: 10 }, bedrooms: 4, bathrooms: 3, sqft: 1400, developerId: 'd1' },
+  { id: '2', title: "3 Bedroom Flat", location: "Victoria Island", price: 35000000, description: "Luxury flat in prime location.", status: PropertyStatus.VERIFIED, imageUrl: "https://picsum.photos/600/400?random=112", stats: { views: 24, leads: 2 }, bedrooms: 3, bathrooms: 2, sqft: 1200, developerId: 'd1' }
 ];
 
 const BuyerDashboard: React.FC<{ user: User }> = ({ user }) => {
