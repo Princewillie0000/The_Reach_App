@@ -12,6 +12,10 @@ const nextConfig = {
   env: {
     GEMINI_API_KEY: process.env.GEMINI_API_KEY,
   },
+  // Disable static optimization for pages directory
+  experimental: {
+    appDir: true,
+  },
 }
 
 module.exports = nextConfig
