@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useUser } from '../contexts/UserContext';
-import Landing from '../pages/Landing';
+import Landing from '../components/Landing';
 
 export const dynamic = 'force-dynamic';
 

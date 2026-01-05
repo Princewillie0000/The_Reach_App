@@ -4,9 +4,9 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useUser } from '../../contexts/UserContext';
 import { UserRole } from '../../types';
-import DeveloperDashboard from '../../pages/dashboards/DeveloperDashboard';
-import CreatorDashboard from '../../pages/dashboards/CreatorDashboard';
-import BuyerDashboard from '../../pages/dashboards/BuyerDashboard';
+import DeveloperDashboard from '../../components/dashboards/DeveloperDashboard';
+import CreatorDashboard from '../../components/dashboards/CreatorDashboard';
+import BuyerDashboard from '../../components/dashboards/BuyerDashboard';
 
 export const dynamic = 'force-dynamic';
 

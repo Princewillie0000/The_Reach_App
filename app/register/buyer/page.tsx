@@ -1,6 +1,6 @@
 'use client';
 
-import BuyerRegistration from '../../../pages/auth/BuyerRegistration';
+import BuyerRegistration from '../../../components/auth/BuyerRegistration';
 
 export const dynamic = 'force-dynamic';
 

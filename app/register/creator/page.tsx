@@ -1,6 +1,6 @@
 'use client';
 
-import CreatorRegistration from '../../../pages/auth/CreatorRegistration';
+import CreatorRegistration from '../../../components/auth/CreatorRegistration';
 
 export const dynamic = 'force-dynamic';
 

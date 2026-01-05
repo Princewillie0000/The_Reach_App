@@ -1,6 +1,6 @@
 'use client';
 
-import DeveloperRegistration from '../../../pages/auth/DeveloperRegistration';
+import DeveloperRegistration from '../../../components/auth/DeveloperRegistration';
 
 export const dynamic = 'force-dynamic';
 

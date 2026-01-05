@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useUser } from '../../contexts/UserContext';
-import WalletPage from '../../pages/WalletPage';
+import WalletPage from '../../components/WalletPage';
 
 export const dynamic = 'force-dynamic';
 
