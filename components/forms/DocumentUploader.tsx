@@ -26,7 +26,7 @@ const REQUIRED_DOCS: Record<ListingType, DocType[]> = {
 };
 
 export function DocumentUploader({ documents, onChange, listingType }: DocumentUploaderProps) {
-  const fileInputRefs = useRef<Record<DocType, HTMLInputElement | null>>({} as any);
+  const fileInputRefs = useRef<Partial<Record<DocType, HTMLInputElement | null>>>({});
 
   const requiredDocs = REQUIRED_DOCS[listingType];
   const optionalDocs: DocType[] = ['TENANCY_CLEARANCE', 'OTHER'];
@@ -105,7 +105,13 @@ export function DocumentUploader({ documents, onChange, listingType }: DocumentU
                     </button>
                   )}
                   <input
-                    ref={(el) => { fileInputRefs.current[docType] = el; }}
+                    ref={(el) => {
+                      if (el) {
+                        fileInputRefs.current[docType] = el;
+                      } else {
+                        delete fileInputRefs.current[docType];
+                      }
+                    }}
                     type="file"
                     accept=".pdf,.doc,.docx"
                     className="hidden"
@@ -161,7 +167,13 @@ export function DocumentUploader({ documents, onChange, listingType }: DocumentU
                     </button>
                   )}
                   <input
-                    ref={(el) => { fileInputRefs.current[docType] = el; }}
+                    ref={(el) => {
+                      if (el) {
+                        fileInputRefs.current[docType] = el;
+                      } else {
+                        delete fileInputRefs.current[docType];
+                      }
+                    }}
                     type="file"
                     accept=".pdf,.doc,.docx"
                     className="hidden"
