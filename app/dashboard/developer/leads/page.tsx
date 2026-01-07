@@ -139,7 +139,8 @@ export default function DeveloperLeadsPage() {
 
   if (userLoading || loading) {
     return (
-      <DashboardShell user={user}>
+        <DashboardShell user={user ?? undefined}>
+
         <div className="min-h-screen bg-[#FDFBFA] flex items-center justify-center">
           <div className="animate-pulse">
             <div className="w-12 h-12 rounded-full border-4 border-reach-navy border-t-transparent animate-spin"></div>
@@ -150,7 +151,8 @@ export default function DeveloperLeadsPage() {
   }
 
   return (
-    <DashboardShell user={user}>
+    <DashboardShell user={user ?? undefined}>
+
       <div className="min-h-screen bg-[#FDFBFA]">
         <div className="max-w-7xl mx-auto p-6">
           {/* Search Bar */}
