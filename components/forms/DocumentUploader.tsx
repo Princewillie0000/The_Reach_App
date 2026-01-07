@@ -105,7 +105,7 @@ export function DocumentUploader({ documents, onChange, listingType }: DocumentU
                     </button>
                   )}
                   <input
-                    ref={(el) => (fileInputRefs.current[docType] = el)}
+                    ref={(el) => { fileInputRefs.current[docType] = el; }}
                     type="file"
                     accept=".pdf,.doc,.docx"
                     className="hidden"
@@ -161,7 +161,7 @@ export function DocumentUploader({ documents, onChange, listingType }: DocumentU
                     </button>
                   )}
                   <input
-                    ref={(el) => (fileInputRefs.current[docType] = el)}
+                    ref={(el) => { fileInputRefs.current[docType] = el; }}
                     type="file"
                     accept=".pdf,.doc,.docx"
                     className="hidden"
