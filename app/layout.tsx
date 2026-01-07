@@ -1,5 +1,6 @@
 import React from 'react';
 import { Providers } from './Providers';
+import { RoleSwitcher } from '../components/dev/RoleSwitcher';
 import './globals.css';
 
 export const metadata = {
@@ -22,6 +23,7 @@ export default function RootLayout({
       <body>
         <Providers>
           {children}
+          <RoleSwitcher />
         </Providers>
       </body>
     </html>

@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useUser } from '../../contexts/UserContext';
+import { getMockSession } from '../../lib/mockAuth';
 import { UserRole } from '../../types';
 import DeveloperDashboard from '../../components/dashboards/DeveloperDashboard';
 import CreatorDashboard from '../../components/dashboards/CreatorDashboard';
@@ -13,12 +14,26 @@ export const dynamic = 'force-dynamic';
 export default function DashboardPage() {
   const router = useRouter();
   const { user, isLoading } = useUser();
+  const session = getMockSession();
 
   useEffect(() => {
     if (!isLoading && !user) {
       router.push('/');
+      return;
     }
-  }, [user, isLoading, router]);
+
+    // Redirect developers to new dashboard
+    if (user && user.role === UserRole.DEVELOPER) {
+      router.push('/dashboard/developer');
+      return;
+    }
+
+    // Redirect admins to admin panel
+    if (session.role === 'ADMIN') {
+      router.push('/admin/properties');
+      return;
+    }
+  }, [user, isLoading, router, session.role]);
 
   if (isLoading) {
     return (
@@ -35,10 +50,7 @@ export default function DashboardPage() {
     return null;
   }
 
-  if (user.role === UserRole.DEVELOPER) {
-    return <DeveloperDashboard user={user} />;
-  }
-
+  // Fallback to old dashboards for Creator/Buyer
   if (user.role === UserRole.CREATOR) {
     return <CreatorDashboard user={user} />;
   }

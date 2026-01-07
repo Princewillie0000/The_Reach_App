@@ -2,7 +2,8 @@
 'use client';
 
 import React from 'react';
-import { Property, PropertyStatus } from '../../types';
+import { PropertyStatus } from '../../types/property';
+import { Property } from '../../types';
 import { Eye, Users, Star, MoreHorizontal, MapPin } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
@@ -17,7 +18,9 @@ const PropertyCard: React.FC<Props> = ({ property }) => {
     switch (status) {
       case PropertyStatus.VERIFIED: return 'bg-green-100 text-green-600';
       case PropertyStatus.REJECTED: return 'bg-red-100 text-reach-red';
-      case PropertyStatus.PENDING: return 'bg-orange-100 text-reach-orange';
+      case PropertyStatus.PENDING_VERIFICATION:
+      case PropertyStatus.SUBMITTED: return 'bg-orange-100 text-reach-orange';
+      case PropertyStatus.DRAFT: return 'bg-gray-100 text-gray-600';
       default: return 'bg-gray-100 text-gray-600';
     }
   };
@@ -30,8 +33,18 @@ const PropertyCard: React.FC<Props> = ({ property }) => {
       <div className="relative h-56">
         <img src={property.imageUrl} alt={property.title} className="w-full h-full object-cover" />
         <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-[10px] font-bold flex items-center gap-1.5 ${getStatusColor(property.status)}`}>
-           <div className={`w-1.5 h-1.5 rounded-full ${property.status === PropertyStatus.VERIFIED ? 'bg-green-500' : property.status === PropertyStatus.REJECTED ? 'bg-reach-red' : 'bg-reach-orange'}`} />
-           {property.status}
+           <div className={`w-1.5 h-1.5 rounded-full ${
+             property.status === PropertyStatus.VERIFIED ? 'bg-green-500' 
+             : property.status === PropertyStatus.REJECTED ? 'bg-reach-red' 
+             : (property.status === PropertyStatus.PENDING_VERIFICATION || property.status === PropertyStatus.SUBMITTED) ? 'bg-reach-orange'
+             : 'bg-gray-400'
+           }`} />
+           {property.status === PropertyStatus.VERIFIED ? 'Verified' 
+            : property.status === PropertyStatus.REJECTED ? 'Rejected'
+            : property.status === PropertyStatus.PENDING_VERIFICATION ? 'Pending'
+            : property.status === PropertyStatus.SUBMITTED ? 'Submitted'
+            : property.status === PropertyStatus.DRAFT ? 'Draft'
+            : property.status}
         </div>
         <button className="absolute top-4 right-4 p-2 bg-black/20 backdrop-blur-md rounded-full text-white">
            <MoreHorizontal size={18} />

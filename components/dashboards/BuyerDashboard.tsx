@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
-import { User, PropertyStatus } from '../../types';
+import { User } from '../../types';
+import { PropertyStatus } from '../../types/property';
 import PropertyCard from '../../components/dashboard/PropertyCard';
 import { Bell, Menu, Search, SlidersHorizontal, Map } from 'lucide-react';
 

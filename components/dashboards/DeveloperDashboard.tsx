@@ -2,7 +2,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import { User, PropertyStatus, Property } from '../../types';
+import { User, Property } from '../../types';
+import { PropertyStatus } from '../../types/property';
 import PropertyCard from '../../components/dashboard/PropertyCard';
 import StatCard from '../../components/dashboard/StatCard';
 import { Plus, Bell, Menu, Search, SlidersHorizontal } from 'lucide-react';
@@ -47,7 +48,7 @@ const MOCK_PROPERTIES: Property[] = [
     location: "Victoria Island, Lagos",
     price: 15000000,
     description: "Perfect for young professionals.",
-    status: PropertyStatus.PENDING,
+    status: PropertyStatus.PENDING_VERIFICATION,
     developerId: 'rob',
     imageUrl: "https://picsum.photos/600/400?random=103",
     stats: { views: 89, leads: 5 },
@@ -109,7 +110,7 @@ const DeveloperDashboard: React.FC<Props> = ({ user }) => {
         </div>
 
         <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
-          {['All', 'Verified', 'Rejected', 'Pending', 'Sold'].map(tab => (
+          {['All', 'Verified', 'Rejected', 'Pending'].map(tab => (
             <button 
               key={tab}
               onClick={() => setActiveTab(tab)}
@@ -124,7 +125,13 @@ const DeveloperDashboard: React.FC<Props> = ({ user }) => {
 
         <div className="space-y-4">
            {MOCK_PROPERTIES
-            .filter(p => activeTab === 'All' || p.status === activeTab)
+            .filter(p => {
+              if (activeTab === 'All') return true;
+              if (activeTab === 'Verified') return p.status === PropertyStatus.VERIFIED;
+              if (activeTab === 'Rejected') return p.status === PropertyStatus.REJECTED;
+              if (activeTab === 'Pending') return p.status === PropertyStatus.PENDING_VERIFICATION || p.status === PropertyStatus.SUBMITTED;
+              return true;
+            })
             .map(property => (
              <PropertyCard key={property.id} property={property} />
            ))}

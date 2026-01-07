@@ -1,8 +1,9 @@
 
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { useUser } from '../contexts/UserContext';
 
 const slides = [
   {
@@ -25,9 +26,31 @@ const slides = [
 const Landing: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const router = useRouter();
+  const { user, logout } = useUser();
+
+  // Auto-advance slides
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="flex flex-col h-screen bg-reach-light overflow-hidden">
+      {user && (
+        <div className="absolute top-4 right-4 z-50">
+          <button
+            onClick={() => {
+              logout();
+              window.location.reload();
+            }}
+            className="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-semibold text-gray-700 hover:bg-gray-50 transition-colors shadow-sm"
+          >
+            Logout & Start Fresh
+          </button>
+        </div>
+      )}
       <div className="flex-1 relative flex items-center justify-center p-6 mt-12">
          <div className="w-full h-full max-h-[450px] relative">
             {/* Visual representation of image blobs from design */}
@@ -60,16 +83,32 @@ const Landing: React.FC = () => {
 
         <div className="w-full space-y-4">
           <button 
-            onClick={() => router.push('/role-selection')}
+            onClick={() => {
+              if (user) {
+                // If logged in, go to dashboard
+                router.push('/dashboard');
+              } else {
+                // If not logged in, go to role selection for onboarding
+                router.push('/role-selection');
+              }
+            }}
             className="w-full bg-reach-navy text-white font-semibold py-4 rounded-2xl hover:bg-opacity-90 transition-all active:scale-95 shadow-lg"
           >
-            Create an Account
+            {user ? 'Go to Dashboard' : 'Create an Account'}
           </button>
           <button 
-            onClick={() => router.push('/role-selection')}
+            onClick={() => {
+              if (user) {
+                // If logged in, go to dashboard
+                router.push('/dashboard');
+              } else {
+                // If not logged in, go to role selection for login
+                router.push('/role-selection');
+              }
+            }}
             className="w-full bg-white text-reach-navy border-2 border-reach-navy font-semibold py-4 rounded-2xl hover:bg-gray-50 transition-all active:scale-95"
           >
-            Log In
+            {user ? 'Continue to Dashboard' : 'Log In'}
           </button>
         </div>
         

@@ -1,4 +1,11 @@
 {
+  "/dashboard/developer/inspections/page": "app/dashboard/developer/inspections/page.js",
+  "/dashboard/developer/leads/[id]/page": "app/dashboard/developer/leads/[id]/page.js",
+  "/dashboard/developer/leads/page": "app/dashboard/developer/leads/page.js",
+  "/dashboard/developer/page": "app/dashboard/developer/page.js",
+  "/dashboard/developer/properties/drafts/page": "app/dashboard/developer/properties/drafts/page.js",
+  "/dashboard/developer/properties/new/page": "app/dashboard/developer/properties/new/page.js",
+  "/dashboard/developer/properties/page": "app/dashboard/developer/properties/page.js",
   "/dashboard/page": "app/dashboard/page.js",
   "/page": "app/page.js"
 }

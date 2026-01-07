@@ -7,13 +7,9 @@ export enum UserRole {
   ORGANIZER = 'ORGANIZER'
 }
 
-export enum PropertyStatus {
-  DRAFT = 'Draft',
-  PENDING = 'Pending',
-  VERIFIED = 'Verified',
-  REJECTED = 'Rejected',
-  SOLD = 'Sold'
-}
+// PropertyStatus enum moved to types/property.ts
+// Import from there: import { PropertyStatus } from './types/property';
+import { PropertyStatus } from './types/property';
 
 export interface User {
   id: string;

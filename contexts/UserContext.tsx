@@ -6,6 +6,7 @@ import { User } from '../types';
 interface UserContextType {
   user: User | null;
   setUser: (user: User | null) => void;
+  logout: () => void;
   isLoading: boolean;
 }
 
@@ -36,8 +37,15 @@ export function UserProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  const logout = () => {
+    setUserState(null);
+    localStorage.removeItem('user');
+    localStorage.removeItem('mockRole');
+    localStorage.removeItem('property-storage');
+  };
+
   return (
-    <UserContext.Provider value={{ user, setUser, isLoading }}>
+    <UserContext.Provider value={{ user, setUser, logout, isLoading }}>
       {children}
     </UserContext.Provider>
   );
