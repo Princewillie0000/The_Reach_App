@@ -1,11 +1,3 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
-  "/dashboard/developer/page": "app/dashboard/developer/page.js",
-  "/dashboard/developer/profile/page": "app/dashboard/developer/profile/page.js",
-  "/dashboard/developer/properties/new/page": "app/dashboard/developer/properties/new/page.js",
-  "/dashboard/developer/properties/page": "app/dashboard/developer/properties/page.js",
-  "/dashboard/developer/settings/page": "app/dashboard/developer/settings/page.js",
-  "/dashboard/developer/wallet/page": "app/dashboard/developer/wallet/page.js",
-  "/dashboard/page": "app/dashboard/page.js",
-  "/page": "app/page.js"
+  "/dashboard/developer/leads/page": "app/dashboard/developer/leads/page.js"
 }

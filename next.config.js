@@ -12,12 +12,8 @@ const nextConfig = {
   env: {
     GEMINI_API_KEY: process.env.GEMINI_API_KEY,
   },
-  // Disable static page generation
+  // Use standalone output for better deployment
   output: 'standalone',
-  // Skip static optimization
-  generateStaticParams: async () => {
-    return [];
-  },
 }
 
 module.exports = nextConfig
